@@ -1,0 +1,77 @@
+:root {
+  --bg:       #0B0B0F;
+  --surface:  #111117;
+  --surface2: #18181F;
+  --surface3: #1F1F29;
+  --surface4: #262632;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.04);
+  --text:     #EEEDF4;
+  --text2:    #9896B2;
+  --text3:    #5C5A74;
+  --accent:   #7C6FFF;
+  --accent2:  #A99BFF;
+  --accent-g: rgba(124,111,255,0.2);
+  --green:    #34D399;
+  --red:      #F87171;
+  --yellow:   #FBBF24;
+  --blue:     #60A5FA;
+  --orange:   #FB923C;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg); color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface4); border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--surface4) transparent; }
+
+button { cursor: pointer; font-family: inherit; }
+input, select, textarea { font-family: inherit; }
+
+/* ─── Sidebar responsive ─────────────────────── */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+}
+
+.mobile-menu-btn { display: none; }
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed !important;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: none;
+    width: 220px;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 30px rgba(0,0,0,0.5);
+  }
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+  /* Deal row — hide less important columns on mobile */
+  .deal-col-date { display: none; }
+  .deal-col-priority { display: none; }
+}
+
+@media (max-width: 480px) {
+  .deal-col-stage { display: none; }
+}
